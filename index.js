@@ -8,16 +8,8 @@ let object = {
 };
 
 function find(object, path) {
-    const slicePath = path.split('.')
-    let result = object
-    for (let item of slicePath){
-        if (result.hasOwnProperty(item)){
-            result = result[item]
-        }else {
-            return undefined
-        }
-    }
-    return result
+    return path.split('.').reduce((acc, res) => (acc && acc.hasOwnProperty(res)) ? acc[res] : undefined, object)
+
 }
 
 console.log(find(object, 'user.name.first'))
